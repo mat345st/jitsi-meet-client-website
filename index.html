@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Titel-Tag</title>
+	 
+	<!-- Bootstrap -->
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet">
+</head>
+
+<body id="body">
+
+	<nav class="navbar navbar-expand-lg navbar-light bg-dark" id="navbar">
+		<div class="container">
+			<div class="navbar-left" id="navbar-btn-container">
+
+
+				<img src="images/hang-up-icon.png" width="30" height="30" class="d-inline-block align-top" alt="" onclick="exec_hangup_icon()">
+
+
+					<!--<a class="navbar-brand navbar-left" href="#">Connect</a>-->
+				<button type="button" class="btn btn-default navbar-btn" onclick="exec_btn_connect()" id="btn-connect">Connect</button>
+
+					<!--<a class="navbar-brand navbar-left" href="#"></a>-->
+				<button type="button" class="btn btn-default navbar-btn meet-btn"  id="btn-meet1" >Meeting</button>
+				<button type="button" class="btn btn-default navbar-btn meet-btn"  id="btn-meet2">Meeting</button>
+				<button type="button" class="btn btn-default navbar-btn meet-btn"  id="btn-meet3">Meeting</button>
+				<button type="button" class="btn btn-default navbar-btn meet-btn" id="btn-meet4">Meeting</button>
+				<button type="button" class="btn btn-default navbar-btn meet-btn"  id="btn-meet5">Meeting</button>
+				<button type="button" class="btn btn-default navbar-btn meet-btn"  id="btn-meet6">Meeting</button>
+				<button type="button" class="btn btn-default navbar-btn meet-btn" id="btn-meet7">Meeting</button>
+				<button type="button" class="btn btn-default navbar-btn meet-btn" id="btn-meet8">Meeting</button>
+				<button type="button" class="btn btn-default navbar-btn meet-btn"  id="btn-meet9">Meeting</button>
+				<button type="button" class="btn btn-default navbar-btn meet-btn"  id="btn-meet10">Meeting</button>
+			</div>
+		</div>
+	</nav>
+
+	<div class="container-fluid">
+
+		<div id="connect_screen">
+			<div class="row" >
+
+
+				<div class="col"></div>
+				<div class="col-6" style="padding-top: 100px">
+					<form>
+						<div class="form-group">
+							<label for="input_server">Jitsi Meet Server</label>
+							<input type="text" class="form-control" id="input_server" placeholder="Jitsi Meet Server">
+						</div>
+						<div class="form-group">
+							<label for="input_room">Jitsi Meet Chatroom</label>
+							<input type="text" class="form-control" id="input_room">
+						</div>
+						<button type="button" class="btn btn-primary" onclick="openConnection(getNextLayer())">Verbinden</button>
+					</form>
+				</div>
+				<div class="col"></div>
+
+			</div>
+
+			<div class="row" style="height: 100px"></div>
+
+			<div class="row">
+
+				<div class="col"></div>
+				<div class="col-6" style="padding-bottom: 0px">
+					<form>
+						<div class="form-group">
+							<label for="input_name">Nickname</label>
+							<input type="text" class="form-control" id="input_name" placeholder="Fellow Jitser">
+						</div>
+
+
+					</form>
+				</div>
+				<div class="col"></div>
+
+
+			</div>
+		</div>
+
+
+		<div class="meet_screen" id="meet_screen1"> <div class="iframe_container" id="iframe_container1"></div> </div>
+		<div class="meet_screen" id="meet_screen2"> <div class="iframe_container" id="iframe_container2"></div> </div>
+		<div class="meet_screen" id="meet_screen3"> <div class="iframe_container" id="iframe_container3"></div> </div>
+		<div class="meet_screen" id="meet_screen4"> <div class="iframe_container" id="iframe_container4"></div> </div>
+		<div class="meet_screen" id="meet_screen5"> <div class="iframe_container" id="iframe_container5"></div> </div>
+		<div class="meet_screen" id="meet_screen6"> <div class="iframe_container" id="iframe_container6"></div> </div>
+		<div class="meet_screen" id="meet_screen7"> <div class="iframe_container" id="iframe_container7"></div> </div>
+		<div class="meet_screen" id="meet_screen8"> <div class="iframe_container" id="iframe_container8"></div> </div>
+		<div class="meet_screen" id="meet_screen9"> <div class="iframe_container" id="iframe_container9"></div> </div>
+		<div class="meet_screen" id="meet_screen10"> <div class="iframe_container" id="iframe_container10"></div> </div>
+
+
+
+
+		<div class="modal" tabindex="-1" role="dialog" id="modal_max_con">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Fehler</h5>
+						<!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>-->
+					</div>
+					<div class="modal-body">
+						<p>Du kannst dich mit maximal 10 Chaträumen verbinden!</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+	</div>
+ 
+    <script src="js/jquery.min.js" ></script>
+    <script src="js/bootstrap.min.js"></script>
+	<script src='https://meet.jit.si/external_api.js'></script>
+    <script src="js/script.js"></script>
+	<script src="js/meeting_layers.js"></script>
+	<script src="js/interface_config.js"></script>
+
+
+
+</body>
+
+</html>

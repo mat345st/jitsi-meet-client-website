@@ -1,0 +1,33 @@
+.meet_screen{
+    display: none;
+    width: 100%;
+    height: 100%;
+    padding-left: 0px;
+    margin-left: 0px;
+    /*background-color: green;*/
+}
+
+#connect_screen{
+    /*background-color: blue;*/
+}
+
+.iframe_container{
+    width: 100%;
+    height: 100%;
+    /*background-color: red;*/
+    padding-right: 10px;
+
+}
+
+.meet-btn{
+    display: none;
+}
+
+.hangup_icon{
+    position: absolute;
+    align-self: center;
+    height: 10%;
+    width: 10%;
+    bottom: 0;
+}
+
