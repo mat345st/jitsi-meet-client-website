@@ -44,7 +44,7 @@ function openConnection(layer) {
 
     input_room.value = "";
 
-    login(layer, domain, room, name, screen.width - 40,  screen.height - 190);
+    login(layer, domain, room, name, layer.width,  layer.height);
 
 }
 
