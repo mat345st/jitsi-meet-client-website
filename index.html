@@ -6,13 +6,13 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Jitsi Connections</title>
-	 
+
 	<!-- Bootstrap -->
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<link href="css/style.css" rel="stylesheet">
 </head>
 
-<body id="body">
+<body id="body" onload="setBtnActive(btn_connect)">
 
 	<nav class="navbar navbar-expand-lg navbar-light bg-dark" id="navbar">
 		<div class="container">
@@ -24,6 +24,7 @@
 
 					<!--<a class="navbar-brand navbar-left" href="#">Connect</a>-->
 				<button type="button" class="btn btn-default navbar-btn" onclick="exec_btn_connect()" id="btn-connect">Connect</button>
+				<button type="button" class="btn btn-default navbar-btn" onclick="exec_btn_multi_window()" id="btn-multi-window">Multi Window</button>
 
 					<!--<a class="navbar-brand navbar-left" href="#"></a>-->
 				<button type="button" class="btn btn-default navbar-btn meet-btn"  id="btn-meet1" >Meeting</button>
@@ -69,7 +70,7 @@
 			<div class="row">
 
 				<div class="col"></div>
-				<div class="col-6" style="padding-bottom: 0px">
+				<div class="col-6" >
 					<form>
 						<div class="form-group">
 							<label for="input_name">Nickname</label>
@@ -85,6 +86,42 @@
 			</div>
 		</div>
 
+		<div class="multi_window_screen meet_screen" id="multi_window_screen">
+
+            <div class="row">
+                <div class="col-6">
+                    <div class="iframe_container mw_iframe_container" id="mw_iframe_container1"></div>
+                </div>
+                <div class="col-6">
+                    <div class="iframe_container mw_iframe_container" id="mw_iframe_container2"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                  <div class="iframe_container mw_iframe_container" id="mw_iframe_container3"></div>
+                </div>
+                <div class="col-6">
+                    <div class="iframe_container mw_iframe_container" id="mw_iframe_container4"></div>
+                </div>
+            </div>
+
+			<!--<div class="row mw_row">
+				<div class="col-6 mw_col">
+					<div class="mw_iframe_container iframe_container" id="mw_iframe_container1" style="background-color: red"><iframe src="index.html" class="mw_iframe"></iframe></div>
+				</div>
+				<div class="col-6 mw_col">
+					<div class="mw_iframe_container iframe_container" id="mw_iframe_container2"style="background-color: blue"><iframe src="index.html" class="mw_iframe"></iframe></div>
+				</div>
+			</div>
+			<div class="row mw_row">
+				<div class="col-6 mw_col">
+					<div class="mw_iframe_container iframe_container" id="mw_iframe_container3" style="background-color: green"><iframe src="index.html" class="mw_iframe"></iframe></div>
+				</div>
+				<div class="col-6 mw_col">
+					<div class="mw_iframe_container iframe_container" id="mw_iframe_container4" style="background-color: orange"><iframe src="index.html" class="mw_iframe"></iframe></div>
+				</div>
+			</div>-->
+		</div>
 
 		<div class="meet_screen" id="meet_screen1"> <div class="iframe_container" id="iframe_container1"></div> </div>
 		<div class="meet_screen" id="meet_screen2"> <div class="iframe_container" id="iframe_container2"></div> </div>
@@ -100,6 +137,7 @@
 
 
 
+		<!-- Modal max connections-->
 		<div class="modal" tabindex="-1" role="dialog" id="modal_max_con">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
@@ -120,6 +158,7 @@
 		</div>
 
 
+		<!-- end container-->
 	</div>
  
     <script src="js/jquery.min.js" ></script>

@@ -6,9 +6,11 @@ const input_name = document.getElementById("input_name");
 input_server.value = "meet.jit.si";
 
 const connect_screen  = document.getElementById("connect_screen");
+const multi_window_screen = document.getElementById("multi_window_screen");
 
 
 const btn_connect = document.getElementById("btn-connect");
+const btn_multi_window = document.getElementById("btn-multi-window");
 
 
 
@@ -17,6 +19,7 @@ var current_layer;
 
 
 addNavBtnListeners();
+
 
 
 
@@ -31,8 +34,10 @@ function openConnection(layer) {
     changeLayer(layer.id);
 
 
+
     layer.button.style.display = "inline";
     layer.button.innerText = room;
+
 
 
     //Login
@@ -61,13 +66,14 @@ function closeConnection(layer) {
 
 
 function getNextLayer() {
-
     for (let layersKey in layers) {
-        if (layers[layersKey].api == null && layersKey !== "connect_layer"){
-            return layers[layersKey];
+        if (layers[layersKey].meeting_layer){
+            if (layers[layersKey].api == null /*&& layersKey !== "connect_layer" && layersKey !== "multi_window_layer" */){
+                console.log("Next layer: " + layers[layersKey].id);
+                return layers[layersKey];
+            }
         }
     }
-
     $('#modal_max_con').modal();
 }
 
@@ -83,8 +89,9 @@ function exec_hangup_icon() {
     }
 }
 
-
-
+function exec_btn_multi_window() {
+    changeLayer(layers.multi_window_layer.id);
+}
 
 
 function addNavBtnListeners() {
@@ -94,7 +101,7 @@ function addNavBtnListeners() {
             console.log("exec " + i);
             changeLayer(i);
         });
-        console.log("Add " + " " + i);
+        //console.log("Add listener " + i);
     }
 
     /*let id = 1;
@@ -110,6 +117,17 @@ function addNavBtnListeners() {
 }
 
 
+function setBtnActive(button) {
+    console.log("Set active" + button);
+    for (let layersKey in layers) {
+        if (layers[layersKey].button === button) {
+            button.style.backgroundColor = "rgb(180,180,180)";
+        } else {
+            layers[layersKey].button.style.backgroundColor = document.getElementById("navbar").style.backgroundColor;
+        }
+    }
+
+}
 // Util
 function changeLayer(newLayerId) {
     console.log("Change layer: " + newLayerId);
@@ -117,7 +135,9 @@ function changeLayer(newLayerId) {
         if (layers[layersKey].id === newLayerId) {
             layers[layersKey].container.style.display = "inline";
             current_layer = layers[layersKey];
+            setBtnActive(layers[layersKey].button);
         }else {
+            console.log("Set none " + layers[layersKey].id);
             layers[layersKey].container.style.display = "none";
         }
     }
@@ -143,6 +163,10 @@ function getMeetingScreen(meetingNumber) {
     return document.getElementById("meet_screen" + meetingNumber);
 }
 
+function getMwMeetingScreen(meetingNumber) {
+    return document.getElementById("mw_meet_screen" + meetingNumber);
+}
+
 function getLayer(meetingNumber) {
     for (let layersKey in layers) {
         if (layers[layersKey].id === meetingNumber){
@@ -153,7 +177,7 @@ function getLayer(meetingNumber) {
 
 function getScreenByButton(button) {
     for (let layersKey in layers) {
-        if (layers[layersKey].button == button) return layers[layersKey];
+        if (layers[layersKey].button === button) return layers[layersKey];
     }
     return null;
 }
