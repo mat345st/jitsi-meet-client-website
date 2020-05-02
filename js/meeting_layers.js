@@ -9,35 +9,35 @@ const layers = {
     multi_window_layer:{
         id: 0,
         name: "multi window",
-        container: multi_window_screen,
+        container: document.getElementById("multi_window_screen"),
         button: btn_multi_window,
         meeting_layer: false,
         sub_layers:{
             mw_meet_layer1: {
                 id: 1,
                 name: "mw_meet1",
-                container: getMwMeetingScreen(1),
+                container: getMwIFrameContainer(1),
                 api: null,
                 meeting_layer: true
             },
             mw_meet_layer2: {
                 id: 2,
                 name: "mw_meet2",
-                container: getMwMeetingScreen(2),
+                container: getMwIFrameContainer(2),
                 api: null,
                 meeting_layer: true
             },
             mw_meet_layer3: {
                 id: 3,
                 name: "mw_meet3",
-                container: getMwMeetingScreen(3),
+                container: getMwIFrameContainer(3),
                 api: null,
                 meeting_layer: true
             },
             mw_meet_layer4: {
                 id: 4,
                 name: "mw_meet4",
-                container: getMwMeetingScreen(4),
+                container: getMwIFrameContainer(4),
                 api: null,
                 meeting_layer: true
             }

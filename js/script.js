@@ -163,8 +163,8 @@ function getMeetingScreen(meetingNumber) {
     return document.getElementById("meet_screen" + meetingNumber);
 }
 
-function getMwMeetingScreen(meetingNumber) {
-    return document.getElementById("mw_meet_screen" + meetingNumber);
+function getMwIFrameContainer(meetingNumber) {
+    return document.getElementById("mw_iframe_container" + meetingNumber);
 }
 
 function getLayer(meetingNumber) {
