@@ -18,28 +18,32 @@ const layers = {
                 name: "mw_meet1",
                 container: getMwIFrameContainer(1),
                 api: null,
-                meeting_layer: true
+                meeting_layer: true,
+                hangup_icon : document.getElementById("mw_hangup_icon1")
             },
             mw_meet_layer2: {
                 id: 2,
                 name: "mw_meet2",
                 container: getMwIFrameContainer(2),
                 api: null,
-                meeting_layer: true
+                meeting_layer: true,
+                hangup_icon : document.getElementById("mw_hangup_icon2")
             },
             mw_meet_layer3: {
                 id: 3,
                 name: "mw_meet3",
                 container: getMwIFrameContainer(3),
                 api: null,
-                meeting_layer: true
+                meeting_layer: true,
+                hangup_icon : document.getElementById("mw_hangup_icon3")
             },
             mw_meet_layer4: {
                 id: 4,
                 name: "mw_meet4",
                 container: getMwIFrameContainer(4),
                 api: null,
-                meeting_layer: true
+                meeting_layer: true,
+                hangup_icon : document.getElementById("mw_hangup_icon4")
             }
         }
     },

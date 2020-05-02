@@ -12,6 +12,10 @@ const multi_window_screen = document.getElementById("multi_window_screen");
 const btn_connect = document.getElementById("btn-connect");
 const btn_multi_window = document.getElementById("btn-multi-window");
 
+const btn_connect_mw = document.getElementById("mw_connect_btn");
+
+const hangup_icon = document.getElementById("navbar_hangup_icon");
+
 
 
 
@@ -38,13 +42,38 @@ function openConnection(layer) {
     layer.button.style.display = "inline";
     layer.button.innerText = room;
 
+    input_room.value = "";
+
+    login(layer, domain, room, name, screen.width - 40,  screen.height - 190);
+
+}
+
+function openMwConnection() {
+    const domain = input_server.value;
+    const room = input_room.value;
+    const name = input_name.value;
+
+    if (room === "") return;
+
+    changeLayer(layers.multi_window_layer.id);
 
 
+    const layer = getNextMwContainer();
+    if (layer === undefined || layer == null) return;
+
+    input_room.value = "";
+
+    layer.hangup_icon.style.display = "inline";
+
+    login(layer, domain, room, name, layer.width, layer.height);
+}
+
+function login(layer, domain, room, name, width, height) {
     //Login
     const options = {
         roomName: room,
-        width: screen.width - 40,
-        height: screen.height - 190,
+        width: width,
+        height: height,
         parentNode: layer.container,
         userInfo: {},
         interfaceConfigOverwrite: interfaceConfig
@@ -64,6 +93,13 @@ function closeConnection(layer) {
     changeLayer(layers.connect_layer.id);
 }
 
+function closeMwConnection(container) {
+    container.api.dispose();
+    container.api = null;
+    container.hangup_icon.style.display = "none";
+    //changeLayer(layers.connect_layer.id);
+}
+
 
 function getNextLayer() {
     for (let layersKey in layers) {
@@ -75,6 +111,18 @@ function getNextLayer() {
         }
     }
     $('#modal_max_con').modal();
+}
+
+function getNextMwContainer() {
+    for (let layersKey in layers.multi_window_layer.sub_layers) {
+
+            if (layers.multi_window_layer.sub_layers[layersKey].api == null /*&& layersKey !== "connect_layer" && layersKey !== "multi_window_layer" */){
+                console.log("Next  mw layer: " + layers.multi_window_layer.sub_layers[layersKey].id);
+                return layers.multi_window_layer.sub_layers[layersKey];
+            }
+
+    }
+    $('#modal_max_con_mw').modal();
 }
 
 
@@ -136,8 +184,12 @@ function changeLayer(newLayerId) {
             layers[layersKey].container.style.display = "inline";
             current_layer = layers[layersKey];
             setBtnActive(layers[layersKey].button);
+            if (layers[layersKey].meeting_layer){
+                hangup_icon.style.opacity = "100%";
+            } else{
+                hangup_icon.style.opacity = "0%";
+            }
         }else {
-            console.log("Set none " + layers[layersKey].id);
             layers[layersKey].container.style.display = "none";
         }
     }

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="de">
-
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,12 +18,15 @@
 			<div class="navbar-left" id="navbar-btn-container">
 
 
-				<img src="images/hang-up-icon.png" width="30" height="30" class="d-inline-block align-top" alt="" onclick="exec_hangup_icon()">
+				<img src="images/hang-up-icon.png"  class="d-inline-block align-top" id="navbar_hangup_icon" alt="" onclick="exec_hangup_icon()">
 
 
 					<!--<a class="navbar-brand navbar-left" href="#">Connect</a>-->
 				<button type="button" class="btn btn-default navbar-btn" onclick="exec_btn_connect()" id="btn-connect">Connect</button>
 				<button type="button" class="btn btn-default navbar-btn" onclick="exec_btn_multi_window()" id="btn-multi-window">Multi Window</button>
+
+
+				<span>|</span>
 
 					<!--<a class="navbar-brand navbar-left" href="#"></a>-->
 				<button type="button" class="btn btn-default navbar-btn meet-btn"  id="btn-meet1" >Meeting</button>
@@ -56,9 +58,10 @@
 						</div>
 						<div class="form-group">
 							<label for="input_room">Jitsi Meet Chatroom</label>
-							<input type="text" class="form-control" id="input_room">
+							<input type="text" class="form-control" id="input_room" placeholder="Jitsi Chat Room">
 						</div>
 						<button type="button" class="btn btn-primary" onclick="openConnection(getNextLayer())">Verbinden</button>
+						<button type="button" class="btn btn-primary" id="mw_connect_btn" onclick="openMwConnection()">Im Multi Window verbinden</button>
 					</form>
 				</div>
 				<div class="col"></div>
@@ -89,18 +92,18 @@
 		<div class="multi_window_screen meet_screen" id="multi_window_screen">
             <div class="row">
                 <div class="col-6">
-                    <div class="iframe_container mw_iframe_container" id="mw_iframe_container1" s></div>
+                    <div class="iframe_container mw_iframe_container" id="mw_iframe_container1"><img src="images/hang-up-icon.png" class="mw_hangup_icon" id="mw_hangup_icon1" alt="" onclick="closeMwConnection(layers.multi_window_layer.sub_layers.mw_meet_layer1)"></div>
                 </div>
                 <div class="col-6">
-                    <div class="iframe_container mw_iframe_container" id="mw_iframe_container2" ></div>
+                    <div class="iframe_container mw_iframe_container" id="mw_iframe_container2"><img src="images/hang-up-icon.png" class="mw_hangup_icon" id="mw_hangup_icon2" alt="" onclick="closeMwConnection(layers.multi_window_layer.sub_layers.mw_meet_layer2)"></div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-6">
-                  <div class="iframe_container mw_iframe_container" id="mw_iframe_container3" ></div>
+                  <div class="iframe_container mw_iframe_container" id="mw_iframe_container3"><img src="images/hang-up-icon.png" class="mw_hangup_icon" id="mw_hangup_icon3" alt="" onclick="closeMwConnection(layers.multi_window_layer.sub_layers.mw_meet_layer3)"></div>
                 </div>
                 <div class="col-6">
-                    <div class="iframe_container mw_iframe_container" id="mw_iframe_container4" ></div>
+                    <div class="iframe_container mw_iframe_container" id="mw_iframe_container4"><img src="images/hang-up-icon.png" class="mw_hangup_icon" id="mw_hangup_icon4" alt="" onclick="closeMwConnection(layers.multi_window_layer.sub_layers.mw_meet_layer4)"></div>
                 </div>
             </div>
 
@@ -122,16 +125,16 @@
 			</div>-->
 		</div>
 
-		<div class="meet_screen" id="meet_screen1"> <div class="iframe_container" id="iframe_container1"></div> </div>
-		<div class="meet_screen" id="meet_screen2"> <div class="iframe_container" id="iframe_container2"></div> </div>
-		<div class="meet_screen" id="meet_screen3"> <div class="iframe_container" id="iframe_container3"></div> </div>
-		<div class="meet_screen" id="meet_screen4"> <div class="iframe_container" id="iframe_container4"></div> </div>
-		<div class="meet_screen" id="meet_screen5"> <div class="iframe_container" id="iframe_container5"></div> </div>
-		<div class="meet_screen" id="meet_screen6"> <div class="iframe_container" id="iframe_container6"></div> </div>
-		<div class="meet_screen" id="meet_screen7"> <div class="iframe_container" id="iframe_container7"></div> </div>
-		<div class="meet_screen" id="meet_screen8"> <div class="iframe_container" id="iframe_container8"></div> </div>
-		<div class="meet_screen" id="meet_screen9"> <div class="iframe_container" id="iframe_container9"></div> </div>
-		<div class="meet_screen" id="meet_screen10"> <div class="iframe_container" id="iframe_container10"></div> </div>
+		<div class="meet_screen" id="meet_screen1">  </div>
+		<div class="meet_screen" id="meet_screen2"> </div>
+		<div class="meet_screen" id="meet_screen3">  </div>
+		<div class="meet_screen" id="meet_screen4">  </div>
+		<div class="meet_screen" id="meet_screen5"> </div>
+		<div class="meet_screen" id="meet_screen6">  </div>
+		<div class="meet_screen" id="meet_screen7">  </div>
+		<div class="meet_screen" id="meet_screen8"> </div>
+		<div class="meet_screen" id="meet_screen9"> </div>
+		<div class="meet_screen" id="meet_screen10"> </div>
 
 
 
@@ -155,6 +158,45 @@
 				</div>
 			</div>
 		</div>
+		<!-- Modal max mw connections-->
+		<div class="modal" tabindex="-1" role="dialog" id="modal_max_con_mw">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Fehler</h5>
+						<!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>-->
+					</div>
+					<div class="modal-body">
+						<p>Du kannst dich mit maximal 4 Chaträumen im Multi Window verbinden!</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Modal new mw connection--->
+		<!--<div class="modal" tabindex="-1" role="dialog" id="modal_new_mw_con">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Fehler</h5>
+
+					</div>
+					<div class="modal-body">
+						<p>Du kannst dich mit maximal 4 Chaträumen im Multi Window verbinden!</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>-->
+
+
 
 
 		<!-- end container-->
