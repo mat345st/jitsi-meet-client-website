@@ -7,20 +7,27 @@
     /*background-color: green;*/
 }
 
-#connect_screen{
-    /*background-color: blue;*/
-}
-
 .iframe_container{
     width: 100%;
     height: 100%;
     /*background-color: red;*/
     padding-right: 10px;
-
 }
 
-.meet-btn{
+.meet-btn {
     display: none;
+    border: 0;
+    box-shadow: none;
+}
+
+.navbar-btn:focus {
+    border: none;
+    box-shadow: none;
+}
+
+.navbar-btn:active{
+    border: 0;
+    box-shadow: none;
 }
 
 .hangup_icon{
@@ -29,5 +36,26 @@
     height: 10%;
     width: 10%;
     bottom: 0;
+}
+
+.mw_iframe_container{
+    height: 100%;
+    width: 100%;
+}
+
+.row{
+    height: 50%;
+}
+
+body{
+    height: 100%;
+}
+
+html{
+    height: 100%;
+}
+
+.container-fluid{
+    height: 100%;
 }
 
